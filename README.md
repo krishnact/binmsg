@@ -1,6 +1,6 @@
 Introduction.
 ----
-BinMsg Compiler is a code generator for protocols buffers. In functionality, it is similar to Protocol Buffers by Google but it handles more complicated types.
+BinMsg Compiler is a code generator for protocols buffers. 
 As of now it is possible to generate reading, writing and dumping code for Java, C++ and C. There are separate runtime libraries for each of the languages.
 
 The protocols are defined in an XML file. Any decent XML editor can be used and code completion is supported in Eclipse's XML editor.
