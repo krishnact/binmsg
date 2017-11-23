@@ -1,0 +1,276 @@
+<?xml version="1.0"?>
+<!-- http://q42jaap.github.io/xsd2codemirror/ -->
+<xs:schema id="msgs" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+
+	<xs:element name="msgs" msdata:IsDataSet="true"
+		msdata:UseCurrentLocale="true">
+		<xs:complexType>
+			<xs:choice  maxOccurs="unbounded">
+				<xs:element ref="msg"></xs:element>
+				<xs:element ref="table"></xs:element>
+			</xs:choice>
+			<xs:attribute name="packageName" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="msg">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="complex"></xs:element>
+				<xs:element ref="array"></xs:element>
+				<xs:element ref="ui8"></xs:element>
+				<xs:element ref="ui16"></xs:element>
+				<xs:element ref="ui24"></xs:element>
+				<xs:element ref="ui32"></xs:element>
+				<xs:element ref="i8"></xs:element>
+				<xs:element ref="i16"></xs:element>
+				<xs:element ref="i24"></xs:element>
+				<xs:element ref="i32"></xs:element>
+				<xs:element ref="bitField"></xs:element>
+				<xs:element ref="byteArray"></xs:element>
+				<xs:element ref="inline"></xs:element>
+				<xs:element ref="collection"></xs:element>
+
+			<xs:sequence>
+				<xs:element ref="if" minOccurs="0" maxOccurs="1">
+				</xs:element>
+			</xs:sequence>
+			</xs:choice>
+			<xs:attribute name="type" type="xs:string" use="required" />
+			<xs:attribute name="package" type="xs:string" use="required"/>
+			<xs:attribute name="predicate" type="xs:string" />
+			<xs:attribute name="base" type="xs:string" />
+			<xs:attribute name="header" type="xs:string" />
+			<xs:attribute name="expression" type="xs:string" />
+			<xs:attribute name="spread" type="xs:string" />
+			<xs:attribute name="spreadAdjustment" type="xs:int" />
+			<xs:attribute name="generate" type="xs:boolean" default="true"/>
+			<xs:attribute name="concrete" type="xs:string"/>
+			<xs:attribute name="isHeader" type="xs:boolean" default="true"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="inline">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+
+				<xs:element ref="complex"></xs:element>
+				<xs:element ref="array"></xs:element>
+				<xs:element ref="ui8"></xs:element>
+				<xs:element ref="ui16"></xs:element>
+				<xs:element ref="ui24"></xs:element>
+				<xs:element ref="ui32"></xs:element>
+				<xs:element ref="i8"></xs:element>
+				<xs:element ref="i16"></xs:element>
+				<xs:element ref="i24"></xs:element>
+				<xs:element ref="i32"></xs:element>
+				<xs:element ref="bitField"></xs:element>
+				<xs:element ref="byteArray"></xs:element>
+				<xs:element ref="inline"></xs:element>
+				<xs:element ref="collection"></xs:element>
+			<xs:sequence>
+				<xs:element ref="if" minOccurs="0" maxOccurs="1">
+				</xs:element>
+			</xs:sequence>
+			</xs:choice>
+			<xs:attribute name="type" type="xs:string" use="required" />
+			<xs:attribute name="expression" type="xs:string" />
+			<xs:attribute name="lengthAdjustment" type="xs:int" />
+			<xs:attribute name="length" type="xs:string" />
+			<xs:attribute name="define" type="xs:boolean" default="true"/>
+			<xs:attribute name="spread" type="xs:string" />
+			<xs:attribute name="spreadAdjustment" type="xs:int" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="byteArray">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="length" type="xs:string" />
+			<xs:attribute name="safeRead" type="xs:boolean" default="false" />
+			<xs:attribute name="lengthAdjustment" type="xs:int" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="description">
+		<xs:complexType>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bitField">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="bits" minOccurs="1" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="mask" type="xs:string" use="required" />
+						<xs:attribute name="name" type="xs:string" use="required" />
+						<xs:attribute name="table" type="xs:string" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="size" type="xs:string" use="required" />
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="safeRead" type="xs:boolean" default="false" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="collection">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="collectiontype" type="xs:string" use="required" />
+			<xs:attribute name="membertype" type="xs:string" use="required" />
+			<xs:attribute name="constructor" type="xs:string" use="required"/>
+			<xs:attribute name="spread" type="xs:string" />
+			<xs:attribute name="spreadAdjustment" type="xs:int" />
+			<xs:attribute name="packageName" type="xs:string" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="array">
+		<xs:complexType>
+			<xs:attribute name="type" type="xs:string" use="required" />
+			<xs:attribute name="size" type="xs:string" />
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="dependentValue" type="xs:string" />
+			<xs:attribute name="dependentValueAdjustment" type="xs:string" />
+			<xs:attribute name="spread" type="xs:string" />
+			<xs:attribute name="spreadAdjustment" type="xs:int" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ui32">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="name" type="xs:string" use="required" />
+					<xs:attribute name="table" type="xs:string" />
+					<xs:attribute name="const" type="xs:string" />
+					<xs:attribute name="safeRead" type="xs:boolean" default="false" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="i32">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="name" type="xs:string" use="required" />
+					<xs:attribute name="table" type="xs:string" />
+					<xs:attribute name="const" type="xs:string" />
+					<xs:attribute name="safeRead" type="xs:boolean" default="false" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ui24">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="name" type="xs:string" use="required" />
+					<xs:attribute name="table" type="xs:string" />
+					<xs:attribute name="const" type="xs:string" />
+					<xs:attribute name="safeRead" type="xs:boolean" default="false" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="i24">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="name" type="xs:string" use="required" />
+					<xs:attribute name="table" type="xs:string" />
+					<xs:attribute name="const" type="xs:string" />
+					<xs:attribute name="safeRead" type="xs:boolean" default="false" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ui16">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="name" type="xs:string" use="required" />
+					<xs:attribute name="table" type="xs:string" />
+					<xs:attribute name="const" type="xs:string" />
+					<xs:attribute name="safeRead" type="xs:boolean" default="false" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="i16">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="name" type="xs:string" use="required" />
+					<xs:attribute name="table" type="xs:string" />
+					<xs:attribute name="const" type="xs:string" />
+					<xs:attribute name="safeRead" type="xs:boolean" default="false" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ui8">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="name" type="xs:string" use="required" />
+					<xs:attribute name="table" type="xs:string" />
+					<xs:attribute name="const" type="xs:string" />
+					<xs:attribute name="safeRead" type="xs:boolean" default="false" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="i8">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="name" type="xs:string" use="required" />
+					<xs:attribute name="table" type="xs:string" />
+					<xs:attribute name="const" type="xs:string" />
+					<xs:attribute name="safeRead" type="xs:boolean" default="false" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+				<xs:element name="if" >
+					<xs:complexType>
+						<xs:attribute name="lvalue" type="xs:string" />
+						<xs:attribute name="comparator" type="xs:string" />
+						<xs:attribute name="rvalue" type="xs:string" />
+					</xs:complexType>
+				</xs:element>
+
+	<xs:element name="complex">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="if" minOccurs="0" maxOccurs="1">
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="type" type="xs:string" use="required" />
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="length" type="xs:string" />
+			<xs:attribute name="expression" type="xs:string" />
+			<xs:attribute name="predicate" type="xs:string" />
+			<xs:attribute name="packageName" type="xs:string" />
+			<xs:attribute name="lengthAdjustment" type="xs:int" />
+		</xs:complexType>
+	</xs:element>
+		<xs:element name="table">
+		<xs:complexType>
+			<xs:sequence >
+				<xs:element name="row" minOccurs="1" maxOccurs="unbounded">
+
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+						<xs:attribute name="mnemonic" type="xs:string" use="required" />
+						<xs:attribute name="valueStart" type="xs:string" use="required" />
+						<xs:attribute name="valueEnd" type="xs:string" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="packageName" type="xs:string"  />
+			<xs:attribute name="name" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>
