@@ -4,10 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
-
+import java.io.DataInputStream;
 public class DumpContext {
 	public static DumpContext SYSTEM_OUT = new DumpContext();
-	
+	static int[] table1= {0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09};
+	static int[] table2= {0x0a,0x0b,0x0c,0x0d,0x0e,0x0f};
+
 	PrintStream ps;
 	int indent;
 	private String indentStr = "";
@@ -173,5 +175,36 @@ public class DumpContext {
 		indent();
 	}
 
-
+	public static byte[] hexToBinary(String hex) {
+	    String clean = hex.toUpperCase().replaceAll("0X","").replaceAll("[^0-9A-F]","");
+	    int length = clean.length()/2;
+	    byte[] retVal = new byte[length];
+	    length = length*2;
+	    byte[] bytes = clean.getBytes();
+	   
+	    for (int ii=0; ii < length; ) {
+	    	byte aByte = bytes[ii];
+	    	int thisByte = 0;
+	    	if ( aByte <=58) {
+	    		thisByte = table1[aByte-48];
+	    	}else {
+	    		thisByte = table2[aByte-65];
+	    	}
+	    	aByte = bytes[++ii];
+	    	int nextByte = 0;
+	    	if ( aByte < 58) {
+	    		nextByte = table1[aByte-48];
+	    	}else {
+	    		nextByte = table2[aByte-65];
+	    	}
+	    	retVal[ii/2] = (byte)((thisByte<< 4)|nextByte);
+	    	ii++;
+	    }
+	    
+	    return retVal;
+	}
+	
+	public static DataInputStream dataInputStream(String hexText){
+		return new DataInputStream(new java.io.ByteArrayInputStream(hexToBinary(hexText)));
+	}
 }
