@@ -43,5 +43,16 @@ public class BinPrimitive {
 			retVal += 3;
 		}
 	}
+	/**
+	 * Gets a signed integer from an I24 stored as int
+	 */
+	public static int signed24Bit(int i24) {
+		if ((i24 & 0x800000) != 0) {
+			return (0xfffffe - i24);
+		}else
+		{
+			return i24;
+		}
+	}
 	
 }
