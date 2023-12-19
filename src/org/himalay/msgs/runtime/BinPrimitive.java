@@ -48,11 +48,82 @@ public class BinPrimitive {
 	 */
 	public static int signed24Bit(int i24) {
 		if ((i24 & 0x800000) != 0) {
-			return (0xfffffe - i24);
+			return -(16777216 - i24);
 		}else
 		{
 			return i24;
 		}
 	}
 	
+	   public static final byte[] intToByteArray(int value)
+   {
+     return new byte[] {
+       (byte)(value >>> 24), 
+       (byte)(value >>> 16), 
+       (byte)(value >>> 8), 
+       (byte)value };
+   }
+   
+   public static final byte[] unsignedIntToByteArray(long value) {
+     value &= 0xFFFFFFFF;
+     return new byte[] {
+       (byte)(int)(value >>> 24), 
+       (byte)(int)(value >>> 16), 
+       (byte)(int)(value >>> 8), 
+       (byte)(int)value };
+   }
+   
+   public static final byte[] longToByteArray(int value) {
+     return new byte[] {
+       (byte)(value >>> 56), 
+       (byte)(value >>> 48), 
+       (byte)(value >>> 40), 
+       (byte)(value >>> 32), 
+       (byte)(value >>> 24), 
+       (byte)(value >>> 16), 
+       (byte)(value >>> 8), 
+       (byte)value };
+   }
+   
+   public static final byte[] unsigned24ToByteArray(int value) {
+     value &= 0xFFFFFF;
+     return new byte[] {
+       (byte)(value >>> 16), 
+       (byte)(value >>> 8), 
+       (byte)value };
+   }
+   
+   public static final byte[] signed24ToByteArray(int value) {
+     if (value < 0) {
+       value = value & 0x7FFFFF | 0x800000;
+     } else {
+       value &= 0x7FFFFF;
+     }
+     return new byte[] {
+       (byte)(value >>> 16), 
+       (byte)(value >>> 8), 
+       (byte)value };
+   }
+   
+   public static final byte[] unsignedShortToByteArray(int value) {
+     value &= 0xFFFF;
+     return new byte[] {
+       (byte)(value >>> 8), 
+       (byte)value };
+   }
+   
+   public static final byte[] shortToByteArray(short value) {
+     return new byte[] {
+       (byte)(value >>> 8), 
+       (byte)value };
+   }
+   
+   public static final byte[] unsignedByteToByteArray(short value) {
+     return new byte[] { (byte)(value & 0xFF) };
+   }
+   
+   public static final byte[] byteToByteArray(byte value) {
+     return new byte[] { value };
+   }
+
 }

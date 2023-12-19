@@ -360,4 +360,9 @@ public class ByteArray implements ComplexBinMessage {
 		this.dump(new DumpContext(baos));
 		return new String(baos.toByteArray());
 	}
+	
+	public int setI32(int val) {
+     setData(BinPrimitive.intToByteArray(val));
+     return 4;
+   }
 }

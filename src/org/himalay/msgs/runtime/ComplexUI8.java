@@ -26,7 +26,7 @@ public  class ComplexUI8 extends BinStruct {
     {
         int retVal= 0;
         // read value
-        {value=(short)(istream.readByte() | 0x00000000); retVal+=1;}
+        this.value = ((short)istream.readByte());retVal++;
 
         return retVal;
     }
@@ -35,7 +35,7 @@ public  class ComplexUI8 extends BinStruct {
     {
         int retVal= 0;
         // read value
-        {value=(short)(istream.readByte() | 0x00000000); retVal+=1;}
+        this.value = ((short)istream.readByte());retVal++;
 
         return retVal;
     }

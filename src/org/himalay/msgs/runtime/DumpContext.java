@@ -15,7 +15,7 @@ public class DumpContext {
 	private String indentStr = "";
 	private String indentStep = "  ";
 
-	public void setIndetStep(String step)
+	public void setIndentStep(String step)
 	{
 		this.indentStep	= step;
 	}

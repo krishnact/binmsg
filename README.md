@@ -17,3 +17,8 @@ Quick Start
 ----
 Please see this [tutorial ](https://github.com/krishnact/projects/tree/master/dnslib)about how to write your own parser.
 
+How to build?
+----
+mvn package
+
+
